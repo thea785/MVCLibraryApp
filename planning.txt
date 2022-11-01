@@ -1,0 +1,38 @@
+User Roles:
+  1 Guest (view books)
+  2 Patron (checkout/return books)
+  3 Librarian (Delete/Add/Edit Books)
+  4 Administrator (Delete/Edit Any User)
+
+Views:
+  1 Search (index)
+    Present all books as a table
+      BookID, Title, Author, CheckedOutBy, OnHoldFor
+    Guests may only view books
+    Patrons may checkout/return/put-on-hold books
+    Librarians+Admin can add/delete/edit books
+
+  2 Login
+    Users may login with username, password
+    Go to individual dashboard after logging in
+    Logout option should appear after logging in
+
+  3 Register
+    First name, last name, email, username and password
+    Registered users will be Patron Roles
+
+  4 Dashboard
+    Patrons:
+      Change profile information
+      List checked out books
+      List books on hold
+    Librarians:
+      Change profile information
+      List ALL checked out books
+      List ALL books on hold
+    Administrator:
+      Change ALL profile information (including Role)
+      List ALL checked out books
+      List ALL books on hold
+    
+
