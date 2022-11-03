@@ -2,6 +2,7 @@
 using System.Data.SqlClient;
 using System.Data;
 using System;
+using LibraryCommon;
 
 namespace LibraryData
 {
@@ -118,7 +119,64 @@ namespace LibraryData
             {
                 //ExceptionLogDatabase.CreateExceptionLog(ex);
             }
+        }
 
+        public static User GetUserByEmail(string email)
+        {
+            try
+            {
+                using (SqlConnection dbcon = new SqlConnection(connString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("GetUserByEmail", dbcon))
+                    {
+                        dbcon.Open(); // Open SqlConnection
+
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+                        SqlParameter _paramEmail = cmd.CreateParameter();
+                        _paramEmail.DbType = DbType.String;
+                        _paramEmail.ParameterName = "@paramEmail";
+                        _paramEmail.Value = email;
+                        cmd.Parameters.Add(_paramEmail);
+
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            // Read in Customer records from SqlDataReader
+                            if (reader.Read())
+                            {
+                                User _user = new User()
+                                {
+                                    UserID = reader["UserID"] is DBNull ? 0 : (int)reader["UserID"],
+                                    RoleID = reader["RoleID"] is DBNull ? 0 : (int)reader["RoleID"],
+                                    Email = reader["Email"] is DBNull ? "" : (string)reader["Email"],
+                                    FirstName = reader["FirstName"] is DBNull ? "" : (string)reader["FirstName"],
+                                    LastName = reader["LastName"] is DBNull ? "" : (string)reader["LastName"],
+                                    HashedPassword = reader["HashedPassword"] is DBNull ? "" : (string)reader["HashedPassword"],
+                                    Salt = reader["Salt"] is DBNull ? "" : (string)reader["Salt"],
+                                    
+                                };
+                                if (_user.UserID == 0)
+                                {
+                                    dbcon.Close();
+                                    return null;
+                                }
+                                else
+                                {
+                                    dbcon.Close();
+                                    return _user;
+                                }
+                            }
+                        }
+                    }
+                    dbcon.Close();
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                // ExceptionLogDatabase.CreateExceptionLog(ex);
+                return null;
+            }
         }
     }
 }
