@@ -2,31 +2,31 @@
 @{
     ViewData["Title"] = "Register";
 }
-<h1>@ViewData["Title"]</h1>
+<h1 class="text-light">@ViewData["Title"]</h1>
 
-<form asp-controller="Home" method="post">
-    <div class="border p-3 mt-4">
+<form asp-controller="Home" class="" method="post">
+    <div class="border border-secondary text-light p-3 mt-4">
         <div class="mb-3">
             <label asp-for="FirstName"></label>
-            <input asp-for="FirstName" class="form-control" />
+            <input asp-for="FirstName" class="form-control bg-secondary border-secondary" />
             <span asp-validation-for="FirstName" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label asp-for="LastName"></label>
-            <input asp-for="LastName" class="form-control" />
+            <input asp-for="LastName" class="form-control bg-secondary border-secondary" />
             <span asp-validation-for="LastName" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label asp-for="Email"></label>
-            <input asp-for="Email" class="form-control" />
+            <input asp-for="Email" class="form-control bg-secondary border-secondary" />
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
         <div class="mb-3">
             <label asp-for="Password"></label>
-            <input asp-for="Password" class="form-control" />
+            <input asp-for="Password" class="form-control bg-secondary border-secondary" />
             <span asp-validation-for="Password" class="text-danger"></span>
         </div>
-        <button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+        <button type="submit" class="btn btn-success" style="width:150px">Create</button>
         <a asp-controller="Home" asp-action="Index" class="btn btn-secondary" style="width:150px">
             Cancel
         </a>
