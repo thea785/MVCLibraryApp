@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LibraryCommon\LibraryCommon.csproj" />
+    <ProjectReference Include="..\LibraryData\LibraryData.csproj" />
   </ItemGroup>
 
 </Project>

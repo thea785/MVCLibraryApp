@@ -1,6 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using LibraryCommon;
-using System;
 
 namespace LibraryUnitTest
 {
