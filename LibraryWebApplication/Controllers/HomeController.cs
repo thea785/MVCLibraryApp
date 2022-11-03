@@ -1,11 +1,10 @@
-﻿using LibraryWebApplication.Models;
+﻿using LibraryBusinessLogic;
+using LibraryCommon;
+using LibraryWebApplication.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace LibraryWebApplication.Controllers
 {
@@ -35,6 +34,23 @@ namespace LibraryWebApplication.Controllers
             if (!ModelState.IsValid)
                 return View();
 
+            // Create user in the database
+            int userID = UsersBL.CreateUser(2, m.Email, m.FirstName, m.LastName, m.Password);
+
+            // Set session for new user
+            HttpContext.Session.SetInt32("UserID", userID);
+            HttpContext.Session.SetInt32("RoleID", 2);
+
+            // Go to index
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Logout()
+        {
+            // Set session to Guest
+            HttpContext.Session.SetInt32("UserID", 0);
+            HttpContext.Session.SetInt32("RoleID", 1);
+            // Go to index
             return RedirectToAction("Index");
         }
 
