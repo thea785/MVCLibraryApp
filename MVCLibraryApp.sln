@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryCommon", "LibraryCom
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryData", "LibraryData\LibraryData.csproj", "{CD8D9D3E-1C9F-4686-A544-D8713B6F99FC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryUnitTest", "LibraryUnitTest\LibraryUnitTest.csproj", "{7B871CA8-E28E-4898-8F4A-02C433438A17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LibraryUnitTest", "LibraryUnitTest\LibraryUnitTest.csproj", "{7B871CA8-E28E-4898-8F4A-02C433438A17}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibraryBusinessLogic", "LibraryBusinessLogic\LibraryBusinessLogic.csproj", "{03A5A2E7-37A8-4624-BA4D-546404CB904F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{7B871CA8-E28E-4898-8F4A-02C433438A17}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7B871CA8-E28E-4898-8F4A-02C433438A17}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7B871CA8-E28E-4898-8F4A-02C433438A17}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03A5A2E7-37A8-4624-BA4D-546404CB904F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03A5A2E7-37A8-4624-BA4D-546404CB904F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03A5A2E7-37A8-4624-BA4D-546404CB904F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03A5A2E7-37A8-4624-BA4D-546404CB904F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

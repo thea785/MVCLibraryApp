@@ -78,5 +78,47 @@ namespace LibraryData
                 return 0;
             }
         }
+
+        public static void UpdateUserPassword(string email, string newHashedPassword, string newSalt)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connString))
+                {
+                    using (SqlCommand _sqlCommand = new SqlCommand("UpdateUserPassword", con))
+                    {
+                        _sqlCommand.CommandType = CommandType.StoredProcedure;
+                        _sqlCommand.CommandTimeout = 30;
+
+                        SqlParameter _Email = _sqlCommand.CreateParameter();
+                        _Email.DbType = DbType.String;
+                        _Email.ParameterName = "@Email";
+                        _Email.Value = email;
+                        _sqlCommand.Parameters.Add(_Email);
+
+                        SqlParameter _NewHashedPassword = _sqlCommand.CreateParameter();
+                        _NewHashedPassword.DbType = DbType.String;
+                        _NewHashedPassword.ParameterName = "@NewHashedPassword";
+                        _NewHashedPassword.Value = newHashedPassword;
+                        _sqlCommand.Parameters.Add(_NewHashedPassword);
+
+                        SqlParameter _NewSalt = _sqlCommand.CreateParameter();
+                        _NewSalt.DbType = DbType.String;
+                        _NewSalt.ParameterName = "@NewSalt";
+                        _NewSalt.Value = newSalt;
+                        _sqlCommand.Parameters.Add(_NewSalt);
+
+                        con.Open();
+                        _sqlCommand.ExecuteNonQuery(); // calls the sp
+                        con.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //ExceptionLogDatabase.CreateExceptionLog(ex);
+            }
+
+        }
     }
 }

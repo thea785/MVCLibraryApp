@@ -88,6 +88,42 @@ END
 GO
 
 
+USE [LibraryApp]
+GO
+CREATE PROCEDURE GetUserByEmail
+	-- Add the parameters for the stored procedure here
+	@paramEmail varchar(255)
+AS
+BEGIN
+	-- Insert statements for procedure here
+	SELECT * 
+	FROM Users
+	WHERE Users.Email=@paramEmail;
+END
+GO
+
+USE [LibraryApp]
+GO
+CREATE PROCEDURE UpdateUserPassword
+	-- Add the parameters for the stored procedure here
+	@Email varchar(255)
+	,@NewHashedPassword varchar(MAX)
+	,@NewSalt varchar
+AS
+BEGIN
+	-- Insert statements for procedure here
+	UPDATE Users
+	SET Users.[Password]=@paramNewPassword
+	WHERE Users.Email = @paramUserEmail;
+END
+GO
+
+
+
+
+
+
+
 -- Insert some default data into the LibraryApp database --
 INSERT INTO Roles (RoleName) VALUES ('Guest')
 INSERT INTO Roles (RoleName) VALUES ('Patron')
