@@ -4,9 +4,8 @@
 }
 <h1>@ViewData["Title"]</h1>
 
-<form method="post">
+<form asp-controller="Home" method="post">
     <div class="border p-3 mt-4">
-        @*<div asp-validation-summary="All"></div>*@
         <div class="mb-3">
             <label asp-for="FirstName"></label>
             <input asp-for="FirstName" class="form-control" />
