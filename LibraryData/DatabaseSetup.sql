@@ -113,8 +113,8 @@ AS
 BEGIN
 	-- Insert statements for procedure here
 	UPDATE Users
-	SET Users.[Password]=@paramNewPassword
-	WHERE Users.Email = @paramUserEmail;
+	SET Users.HashedPassword=@NewHashedPassword, Users.Salt=@NewSalt
+	WHERE Users.Email = @Email;
 END
 GO
 
