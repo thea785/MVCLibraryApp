@@ -29,17 +29,6 @@ namespace LibraryWebApplication.Controllers
             return View();
         }
 
-        [AcceptVerbs("Get", "Post")]
-        public IActionResult VerifyEmail(string email)
-        {
-            if (UsersBL.VerifyEmail(email) == false)
-            {
-                return Json($"Email {email} is already in use.");
-            }
-
-            return Json(true);
-        }
-
         [HttpPost]
         public IActionResult Register(RegisterModel m)
         {
@@ -58,6 +47,17 @@ namespace LibraryWebApplication.Controllers
             return RedirectToAction("Index");
         }
 
+        [AcceptVerbs("Get", "Post")]
+        public IActionResult VerifyEmail(string email)
+        {
+            if (UsersBL.VerifyEmail(email) == false)
+            {
+                return Json($"Email {email} is already in use.");
+            }
+
+            return Json(true);
+        }
+
         [HttpGet]
         public IActionResult Login()
         {
@@ -68,17 +68,17 @@ namespace LibraryWebApplication.Controllers
         {
             if (!ModelState.IsValid)
                 return View();
-
-            if (UsersBL.VerifyPassword(m.Email, m.Password) == false)
+            int userID, roleID;
+            if (UsersBL.VerifyPassword(m.Email, m.Password, out userID, out roleID) == false)
             {
                 ModelState.AddModelError("", "Invalid Email or Password.");
                 return View(m);
             }
 
-            //// Set session for the user
-            //HttpContext.Session.SetInt32("UserID", userID);
-            //HttpContext.Session.SetString("Email", m.Email);
-            //HttpContext.Session.SetInt32("RoleID", 2);
+            // Set session for the user
+            HttpContext.Session.SetInt32("UserID", userID);
+            HttpContext.Session.SetString("Email", m.Email);
+            HttpContext.Session.SetInt32("RoleID", roleID);
 
             // Go to index
             return RedirectToAction("Index");

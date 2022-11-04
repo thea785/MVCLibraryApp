@@ -39,8 +39,10 @@ namespace LibraryBusinessLogic
 
         // Method used for checking entered password when logging in
         // Returns true if the password is valid
-        public static bool VerifyPassword(string email, string enteredPassword)
+        public static bool VerifyPassword(string email, string enteredPassword, out int userID, out int roleID)
         {
+            userID = 0;
+            roleID = 1;
             User u = UsersData.GetUserByEmail(email);
             if (u == null)
             {
@@ -52,6 +54,8 @@ namespace LibraryBusinessLogic
             }
             else if (Hashing.VerifyPassword(enteredPassword, u.HashedPassword, u.Salt))
             {
+                userID = u.UserID;
+                roleID = u.RoleID;
                 return true;
             }
             else
