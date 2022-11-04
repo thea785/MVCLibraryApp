@@ -23,7 +23,7 @@ namespace LibraryWebApplication.Controllers
             return View();
         }
 
-        // GET
+        [HttpGet]
         public IActionResult Register()
         {
             return View();
@@ -51,7 +51,34 @@ namespace LibraryWebApplication.Controllers
 
             // Set session for new user
             HttpContext.Session.SetInt32("UserID", userID);
+            HttpContext.Session.SetString("Email", m.Email);
             HttpContext.Session.SetInt32("RoleID", 2);
+
+            // Go to index
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Login(LoginModel m)
+        {
+            if (!ModelState.IsValid)
+                return View();
+
+            if (UsersBL.VerifyPassword(m.Email, m.Password) == false)
+            {
+                ModelState.AddModelError("", "Invalid Email or Password.");
+                return View(m);
+            }
+
+            //// Set session for the user
+            //HttpContext.Session.SetInt32("UserID", userID);
+            //HttpContext.Session.SetString("Email", m.Email);
+            //HttpContext.Session.SetInt32("RoleID", 2);
 
             // Go to index
             return RedirectToAction("Index");
@@ -62,6 +89,7 @@ namespace LibraryWebApplication.Controllers
             // Set session to Guest
             HttpContext.Session.SetInt32("UserID", 0);
             HttpContext.Session.SetInt32("RoleID", 1);
+            HttpContext.Session.SetString("Email", "");
             // Go to index
             return RedirectToAction("Index");
         }
