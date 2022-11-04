@@ -9,7 +9,7 @@ namespace LibraryData
 	public static class UsersData
 	{
         const string connString =
-            "Data Source=DESKTOP-GPLJ87I;Initial Catalog=LibraryApp;Integrated Security=True";
+            "Data Source=BIG-YELLOW;Initial Catalog=LibraryApp;Integrated Security=True";
 
         public static int CreateUser(int roleID, string email, string firstName, string lastName, string hashedPassword, string salt)
         {
@@ -44,7 +44,7 @@ namespace LibraryData
                         SqlParameter _LastName = _sqlCommand.CreateParameter();
                         _LastName.DbType = DbType.String;
                         _LastName.ParameterName = "@LastName";
-                        _LastName.Value = firstName;
+                        _LastName.Value = lastName;
                         _sqlCommand.Parameters.Add(_LastName);
 
                         SqlParameter _HashedPassword = _sqlCommand.CreateParameter();
