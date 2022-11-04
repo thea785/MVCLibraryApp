@@ -25,7 +25,7 @@ namespace LibraryBusinessLogic
             User u = UsersData.GetUserByEmail(email);
             if (u == null)
             {
-                return false;
+                return true;
             }
             else if (u.UserID == 0)
             {

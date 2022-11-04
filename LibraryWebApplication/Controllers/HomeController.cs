@@ -29,7 +29,7 @@ namespace LibraryWebApplication.Controllers
             return View();
         }
 
-        [AcceptVerbs("GET", "POST")]
+        [AcceptVerbs("Get", "Post")]
         public IActionResult VerifyEmail(string email)
         {
             if (UsersBL.VerifyEmail(email) == false)

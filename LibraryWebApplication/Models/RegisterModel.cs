@@ -8,8 +8,8 @@ namespace LibraryWebApplication.Models
 	{
         [Required]
         [EmailAddress]
-        [Remote("VerifyEmail", "Home")]
-        public string Email { get; set; }
+        [Remote(action:"VerifyEmail", controller:"Home")]
+        public string Email { get; set; } = null!;
         [Required]
         public string FirstName { get; set; }
         [Required]
