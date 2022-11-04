@@ -17,9 +17,25 @@ namespace LibraryBusinessLogic
             return 0;
         }
 
-        public static int GetUserByEmail()
+        public static bool VerifyPassword(string email, string enteredPassword)
         {
-            return 0;
+            User u = UsersData.GetUserByEmail(email);
+            if (u == null)
+            {
+                return false;
+            }
+            else if (u.UserID == 0)
+            {
+                return false;
+            }
+            else if (Hashing.VerifyPassword(enteredPassword, u.HashedPassword, u.Salt))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
