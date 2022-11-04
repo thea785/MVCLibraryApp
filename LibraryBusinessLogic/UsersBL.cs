@@ -1,5 +1,6 @@
 ﻿using LibraryData;
 using LibraryCommon;
+using System;
 
 namespace LibraryBusinessLogic
 {
@@ -17,6 +18,30 @@ namespace LibraryBusinessLogic
             return 0;
         }
 
+        // Used by the register method to check for duplicate emails
+        // Returns true if the email is valid
+        public static bool VerifyEmail(string email)
+        {
+            Console.WriteLine("verify email is called");
+            User u = UsersData.GetUserByEmail(email);
+            if (u == null)
+            {
+                return false;
+            }
+            else if (u.UserID == 0)
+            {
+                Console.WriteLine("reached else");
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("reached else");
+                return false;
+            }
+        }
+
+        // Method used for checking entered password when logging in
+        // Returns true if the password is valid
         public static bool VerifyPassword(string email, string enteredPassword)
         {
             User u = UsersData.GetUserByEmail(email);

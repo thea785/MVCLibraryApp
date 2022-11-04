@@ -1,14 +1,12 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace LibraryWebApplication.Models
 {
-	public class RegisterModel
+	public class LoginModel
 	{
         [Required]
         [EmailAddress]
-        [Remote("VerifyEmail", "Home")]
         public string Email { get; set; }
         [Required]
         public string FirstName { get; set; }

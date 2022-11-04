@@ -4,6 +4,7 @@ using LibraryWebApplication.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using System;
 using System.Diagnostics;
 
 namespace LibraryWebApplication.Controllers
@@ -28,9 +29,21 @@ namespace LibraryWebApplication.Controllers
             return View();
         }
 
+        [AcceptVerbs("GET", "POST")]
+        public IActionResult VerifyEmail(string email)
+        {
+            if (UsersBL.VerifyEmail(email) == false)
+            {
+                return Json($"Email {email} is already in use.");
+            }
+
+            return Json(true);
+        }
+
         [HttpPost]
         public IActionResult Register(RegisterModel m)
         {
+            Console.WriteLine("reached register");
             if (!ModelState.IsValid)
                 return View();
 
