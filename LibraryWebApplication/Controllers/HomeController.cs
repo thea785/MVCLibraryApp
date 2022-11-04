@@ -43,7 +43,6 @@ namespace LibraryWebApplication.Controllers
         [HttpPost]
         public IActionResult Register(RegisterModel m)
         {
-            Console.WriteLine("reached register");
             if (!ModelState.IsValid)
                 return View();
 

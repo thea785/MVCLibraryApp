@@ -22,7 +22,6 @@ namespace LibraryBusinessLogic
         // Returns true if the email is valid
         public static bool VerifyEmail(string email)
         {
-            Console.WriteLine("verify email is called");
             User u = UsersData.GetUserByEmail(email);
             if (u == null)
             {
@@ -30,12 +29,10 @@ namespace LibraryBusinessLogic
             }
             else if (u.UserID == 0)
             {
-                Console.WriteLine("reached else");
                 return true;
             }
             else
             {
-                Console.WriteLine("reached else");
                 return false;
             }
         }
