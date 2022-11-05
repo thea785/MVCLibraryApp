@@ -77,7 +77,7 @@ namespace LibraryData
             }
             catch (Exception ex)
             {
-                //ExceptionLogDatabase.CreateExceptionLog(ex);
+                ExceptionLogData.CreateExceptionLog(ex);
                 return 0;
             }
         }
@@ -119,7 +119,7 @@ namespace LibraryData
             }
             catch (Exception ex)
             {
-                //ExceptionLogDatabase.CreateExceptionLog(ex);
+                ExceptionLogData.CreateExceptionLog(ex);
             }
         }
 
@@ -176,7 +176,7 @@ namespace LibraryData
             }
             catch (Exception ex)
             {
-                // ExceptionLogDatabase.CreateExceptionLog(ex);
+                ExceptionLogData.CreateExceptionLog(ex);
                 return null;
             }
         }
