@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LibraryBusinessLogic\LibraryBusinessLogic.csproj" />
+    <ProjectReference Include="..\LibraryCommon\LibraryCommon.csproj" />
   </ItemGroup>
 
 </Project>

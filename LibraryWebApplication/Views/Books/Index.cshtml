@@ -1,0 +1,63 @@
+﻿@model List<BookModel>
+@{
+    ViewData["Title"] = "Books";
+}
+
+<div class="row pt-4">
+    <div class="col-4"></div>
+    <div class="col-6">
+        <h2 class="text-light">Book List</h2>
+    </div>
+    <div class="col">
+        <a asp-controller="Books" asp-action="Create" class="btn btn-success" style="width:150px">New Book</a>
+    </div>
+</div>
+    <br /><br />
+
+
+<table class="table table-bordered table-dark">
+    <thead>
+        <tr class="bg-secondary">
+            <th>
+                Book ID
+            </th>
+            <th>
+                Title
+            </th>
+            <th>
+                Author
+            </th>
+            <th>
+                Checked Out
+            </th>
+        </tr>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>
+                    @book.BookID
+                </td>
+                <td>
+                    @book.Title
+                </td>
+                <td>
+                    @book.Author
+                </td>
+                <td>
+                    @if (book.CheckedOutBy == 0)
+                    {
+                        <button asp-controller="Books" asp-action="Checkout" class="btn btn-success" style="width:150px">Check Out</button>
+                    }
+                    else if (book.OnHoldBy == 0)
+                    {
+                        <button asp-controller="Books" asp-action="Checkout" class="btn btn-warning" style="width:150px">Reserve</button>
+                    }
+                    else
+                    {
+                        <button class="btn btn-secondary" style="width:150px" disabled>Unavailable</button>
+                    }
+                </td>
+            </tr>
+        }
+    </thead>
+</table>
