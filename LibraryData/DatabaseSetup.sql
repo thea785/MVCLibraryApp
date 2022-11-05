@@ -31,6 +31,16 @@ CREATE TABLE [Users] (
 	Salt varchar(255)
 );
 
+USE [LibraryApp]
+GO
+CREATE TABLE [Books] (
+	BookID int IDENTITY(1,1) PRIMARY KEY,
+	CheckedOutBy int FOREIGN KEY REFERENCES Users(UserID),
+	OnHoldBy int FOREIGN KEY REFERENCES Users(UserID),
+	Title varchar(30),
+	Author varchar(30)
+);
+
 -- Create stored procedures for CRUD operations --
 USE [LibraryApp]
 GO
@@ -99,6 +109,66 @@ BEGIN
 	SELECT * 
 	FROM Users
 	WHERE Users.Email=@paramEmail;
+END
+GO
+
+
+USE [LibraryApp]
+GO
+CREATE PROCEDURE CreateBook
+	-- Add the parameters for the stored procedure here
+	@Title varchar(30)
+	,@Author varchar(30)
+	,@paramOutBookID int output
+AS
+BEGIN
+	-- Insert statements for procedure here
+	INSERT INTO Books (Title, Author)
+	VALUES (@Title, @Author);
+	SELECT @paramOutBookID = SCOPE_IDENTITY();
+END
+GO
+
+USE [LibraryApp]
+GO
+CREATE PROCEDURE DeleteBook
+	-- Add the parameters for the stored procedure here
+	@paramBookID int
+AS
+BEGIN
+	-- Insert statements for procedure here
+	DELETE FROM Books
+	WHERE BookID = @paramBookID;
+END
+GO
+
+USE [LibraryApp]
+GO
+CREATE PROCEDURE CheckoutBook
+	-- Add the parameters for the stored procedure here
+	@BookID int
+	,@UserID int
+AS
+BEGIN
+	-- Insert statements for procedure here
+	UPDATE Books
+	SET Books.CheckedOutBy=@UserID
+	WHERE Books.BookID=@BookID;
+END
+GO
+
+USE [LibraryApp]
+GO
+CREATE PROCEDURE ReturnBook
+	-- Add the parameters for the stored procedure here
+	@BookID int
+	,@UserID int
+AS
+BEGIN
+	-- Insert statements for procedure here
+	UPDATE Books
+	SET Books.CheckedOutBy=Books.OnHoldBy
+	WHERE Books.CheckedOutBy=@UserID AND Books.BookID=@BookID;
 END
 GO
 
