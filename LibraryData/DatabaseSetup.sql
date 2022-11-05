@@ -142,6 +142,18 @@ BEGIN
 END
 GO
 
+
+USE [LibraryApp]
+GO
+CREATE PROCEDURE GetBooks
+	-- Add the parameters for the stored procedure here
+AS
+BEGIN
+	-- Insert statements for procedure here
+	SELECT * FROM Books;
+END
+GO
+
 USE [LibraryApp]
 GO
 CREATE PROCEDURE CheckoutBook
@@ -162,13 +174,27 @@ GO
 CREATE PROCEDURE ReturnBook
 	-- Add the parameters for the stored procedure here
 	@BookID int
-	,@UserID int
 AS
 BEGIN
 	-- Insert statements for procedure here
 	UPDATE Books
 	SET Books.CheckedOutBy=Books.OnHoldBy
-	WHERE Books.CheckedOutBy=@UserID AND Books.BookID=@BookID;
+	WHERE Books.BookID=@BookID;
+END
+GO
+
+USE [LibraryApp]
+GO
+CREATE PROCEDURE HoldBook
+	-- Add the parameters for the stored procedure here
+	@BookID int
+	,@UserID int
+AS
+BEGIN
+	-- Insert statements for procedure here
+	UPDATE Books
+	SET Books.OnHoldBy=@UserID
+	WHERE Books.BookID=@BookID;
 END
 GO
 
