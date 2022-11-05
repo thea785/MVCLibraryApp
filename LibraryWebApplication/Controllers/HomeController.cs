@@ -20,6 +20,14 @@ namespace LibraryWebApplication.Controllers
 
         public IActionResult Index()
         {
+            // Set session for guest
+            if (HttpContext.Session.GetInt32("UserID") == null)
+            {
+                HttpContext.Session.SetInt32("UserID", 0);
+                HttpContext.Session.SetInt32("RoleID", 1);
+                HttpContext.Session.SetString("Email", "");
+            }
+
             return RedirectToAction("Index", "Books");
         }
 

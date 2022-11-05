@@ -1,4 +1,5 @@
 ﻿@model List<BookModel>
+@using Microsoft.AspNetCore.Http
 @{
     ViewData["Title"] = "Books";
 }
@@ -50,13 +51,19 @@
                     }
                     else if (book.OnHoldBy == 0)
                     {
-                        <button asp-controller="Books" asp-action="Checkout" class="btn btn-warning" style="width:150px">Reserve</button>
+                        <button asp-controller="Books" asp-action="Reserve" class="btn btn-warning" style="width:150px">Reserve</button>
                     }
                     else
                     {
                         <button class="btn btn-secondary" style="width:150px" disabled>Unavailable</button>
                     }
                 </td>
+                @if (Context.Session.GetInt32("RoleID") > 2)
+                {
+                    <td style="border: none">
+                        <a asp-controller="Books" asp-action="Delete" asp-route-id="@book.BookID" method="post" class="text-danger">Delete</a>
+                    </td>
+                }
             </tr>
         }
     </thead>

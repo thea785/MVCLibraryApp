@@ -27,5 +27,10 @@ namespace LibraryBusinessLogic
         {
             BooksData.HoldBook(bookID, userID);
         }
+
+        public static void DeleteBook(int bookID)
+        {
+            BooksData.DeleteBook(bookID);
+        }
     }
 }
