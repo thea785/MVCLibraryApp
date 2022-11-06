@@ -3,6 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using LibraryCommon;
 using LibraryWebApplication.Models;
+using Microsoft.AspNetCore.Http;
+using System.Web;
+using System;
 
 namespace LibraryWebApplication.Controllers
 {
@@ -25,6 +28,18 @@ namespace LibraryWebApplication.Controllers
         public IActionResult Delete(int id)
         {
             BooksBL.DeleteBook(id);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Checkout(int? id)
+        {
+            BooksBL.CheckoutBook((int)id, (int)HttpContext.Session.GetInt32("UserID"));
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Reserve(int? id)
+        {
+            BooksBL.HoldBook((int)id, (int)HttpContext.Session.GetInt32("UserID"));
             return RedirectToAction("Index");
         }
     }

@@ -29,7 +29,7 @@
                 Author
             </th>
             <th>
-                Checked Out
+                Check Out
             </th>
         </tr>
         @foreach (var book in Model)
@@ -45,13 +45,21 @@
                     @book.Author
                 </td>
                 <td>
-                    @if (book.CheckedOutBy == 0)
+                    @if (Context.Session.GetInt32("RoleID") < 2 && book.CheckedOutBy == 0) // User is guest, book is available
                     {
-                        <button asp-controller="Books" asp-action="Checkout" class="btn btn-success" style="width:150px">Check Out</button>
+                        <button asp-controller="Books" asp-action="Checkout" asp-route-id="@book.BookID" class="btn btn-success" style="width:150px" disabled>Check Out</button>
+                    }
+                    else if (Context.Session.GetInt32("RoleID") < 2 && book.OnHoldBy == 0) // User is guest, book is checked out
+                    {
+                        <button asp-controller="Books" asp-action="Reserve" asp-route-id="@book.BookID" class="btn btn-warning" style="width:150px" disabled>Reserve</button>
+                    }
+                    else if (book.CheckedOutBy == 0)
+                    {
+                        <a asp-controller="Books" asp-action="Checkout" asp-route-id="@book.BookID" method="post" class="btn btn-success" style="width:150px">Check Out</a>
                     }
                     else if (book.OnHoldBy == 0)
                     {
-                        <button asp-controller="Books" asp-action="Reserve" class="btn btn-warning" style="width:150px">Reserve</button>
+                        <a asp-controller="Books" asp-action="Reserve" asp-route-id="@book.BookID" method="post" class="btn btn-warning" style="width:150px">Reserve</a>
                     }
                     else
                     {
