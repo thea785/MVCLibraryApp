@@ -214,10 +214,19 @@ BEGIN
 END
 GO
 
-
-
-
-
+USE [LibraryApp]
+GO
+CREATE PROCEDURE SearchBooks
+	-- Add the parameters for the stored procedure here
+	@SearchExpression varchar(30)
+AS
+BEGIN
+	-- Insert statements for procedure here
+	SELECT * FROM BOOKS
+	WHERE Books.Title LIKE '%' + @SearchExpression + '%'
+		  OR Books.Author LIKE '%' + @SearchExpression + '%'
+END
+GO
 
 
 -- Insert some default data into the LibraryApp database --

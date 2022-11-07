@@ -37,5 +37,17 @@ namespace LibraryBusinessLogic
         {
             BooksData.DeleteBook(bookID);
         }
+
+        public static List<Book> SearchBooks(string searchExpression)
+        {
+            List<Book> books = BooksData.GetBooks();
+            List<Book> searchResult = new List<Book>();
+            foreach(Book b in books)
+            {
+                if (b.Title.Contains(searchExpression) || b.Author.Contains(searchExpression))
+                searchResult.Add(b);
+            }
+            return searchResult;
+        }
     }
 }

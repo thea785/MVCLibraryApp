@@ -37,12 +37,12 @@
                             <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Dashboard">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Books">Books</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Books</a>
                         </li>
                     </ul>
                 </div>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control text-light bg-secondary border-secondary mr-sm-2" type="search" placeholder="Search Books" aria-label="Search">
+                <form asp-controller="Books" asp-action="Search" class="form-inline my-2 my-lg-0">
+                    <input class="form-control text-light bg-secondary border-secondary mr-sm-2" type="text" id="expr" name="expr" aria-label="Search">
                     <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
                 </form>
         </nav>

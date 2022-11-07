@@ -135,6 +135,54 @@ namespace LibraryData
             }
         }
 
+        //// Returns the Books table as a List of Book objects
+        //public static List<Book> SearchBooks(string searchExpression)
+        //{
+        //    try
+        //    {
+        //        List<Book> books = new List<Book>();
+        //        using (SqlConnection dbcon = new SqlConnection(connString))
+        //        {
+        //            using (SqlCommand cmd = new SqlCommand("SearchBooks", dbcon))
+        //            {
+        //                dbcon.Open(); // Open SqlConnection
+
+        //                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
+        //                SqlParameter _searchExpression = cmd.CreateParameter();
+        //                _searchExpression.DbType = DbType.String;
+        //                _searchExpression.ParameterName = "@SearchExpression";
+        //                _searchExpression.Value = searchExpression;
+        //                cmd.Parameters.Add(_searchExpression);
+
+        //                using (SqlDataReader reader = cmd.ExecuteReader())
+        //                {
+        //                    // Read in Customer records from SqlDataReader
+        //                    while (reader.Read())
+        //                    {
+        //                        Book _book = new Book()
+        //                        {
+        //                            BookID = reader["BookID"] is DBNull ? 0 : (int)reader["BookID"],
+        //                            CheckedOutBy = reader["CheckedOutBy"] is DBNull ? 0 : (int)reader["CheckedOutBy"],
+        //                            OnHoldBy = reader["OnHoldBy"] is DBNull ? 0 : (int)reader["OnHoldBy"],
+        //                            Title = reader["Title"] is DBNull ? "" : (string)reader["Title"],
+        //                            Author = reader["Author"] is DBNull ? "" : (string)reader["Author"]
+        //                        };
+        //                        books.Add(_book);
+        //                    }
+        //                }
+        //            }
+        //            dbcon.Close();
+        //        }
+        //        return books;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        ExceptionLogData.CreateExceptionLog(ex);
+        //        return null;
+        //    }
+        //}
+
         // Sets the CheckedOutBy of the given Book to the given UserID
         public static void CheckoutBook(int bookID, int userID)
         {

@@ -58,5 +58,24 @@ namespace LibraryWebApplication.Controllers
             BooksBL.CreateBook(m.Title, m.Author);
             return RedirectToAction("Index");
         }
+
+        public IActionResult Search(IFormCollection form)
+        {
+            Console.WriteLine(form["expr"]);
+
+            // Get books and convert them to BookModel objects
+            List<Book> books = BooksBL.SearchBooks(form["expr"]);
+            List<BookModel> bookModels = new List<BookModel>();
+
+            if (books == null) { return RedirectToAction("Index"); }
+
+            foreach (Book book in books)
+            {
+                bookModels.Add(Mapper.BookToBookModel(book));
+            }
+
+
+            return View("Index", bookModels);
+        }
     }   
 }
