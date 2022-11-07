@@ -28,6 +28,11 @@ namespace LibraryBusinessLogic
             BooksData.HoldBook(bookID, userID);
         }
 
+        public static void CreateBook(string title, string author)
+        {
+            BooksData.CreateBook(title, author);
+        }
+
         public static void DeleteBook(int bookID)
         {
             BooksData.DeleteBook(bookID);

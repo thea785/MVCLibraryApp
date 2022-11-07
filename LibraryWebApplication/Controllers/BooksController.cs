@@ -16,6 +16,9 @@ namespace LibraryWebApplication.Controllers
             // Get books and convert them to BookModel objects
             List<Book> books = BooksBL.GetBooks();
             List<BookModel> bookModels = new List<BookModel>();
+
+            if (books == null) { return View(); }
+
             foreach (Book book in books)
             {
                 bookModels.Add(Mapper.BookToBookModel(book));
@@ -42,5 +45,18 @@ namespace LibraryWebApplication.Controllers
             BooksBL.HoldBook((int)id, (int)HttpContext.Session.GetInt32("UserID"));
             return RedirectToAction("Index");
         }
-    }
+
+        [HttpGet]
+        public IActionResult Create()
+        {
+            return View("Create");
+        }
+
+        [HttpPost]
+        public IActionResult Create(CreateBookModel m)
+        {
+            BooksBL.CreateBook(m.Title, m.Author);
+            return RedirectToAction("Index");
+        }
+    }   
 }

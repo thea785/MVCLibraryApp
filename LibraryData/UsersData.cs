@@ -8,10 +8,10 @@ namespace LibraryData
 {
 	public static class UsersData
 	{
-        //const string connString =
-        //    "Data Source=BIG-YELLOW;Initial Catalog=LibraryApp;Integrated Security=True";
         const string connString =
-            "Data Source=DESKTOP-GPLJ87I;Initial Catalog=LibraryApp;Integrated Security=True";
+            "Data Source=BIG-YELLOW;Initial Catalog=LibraryApp;Integrated Security=True";
+        //const string connString =
+        //    "Data Source=DESKTOP-GPLJ87I;Initial Catalog=LibraryApp;Integrated Security=True";
 
         public static int CreateUser(int roleID, string email, string firstName, string lastName, string hashedPassword, string salt)
         {

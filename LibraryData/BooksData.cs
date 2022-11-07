@@ -11,10 +11,10 @@ namespace LibraryData
 {
     public static class BooksData
     {
-        //const string connString =
-        //    "Data Source=BIG-YELLOW;Initial Catalog=LibraryApp;Integrated Security=True";
         const string connString =
-            "Data Source=DESKTOP-GPLJ87I;Initial Catalog=LibraryApp;Integrated Security=True";
+            "Data Source=BIG-YELLOW;Initial Catalog=LibraryApp;Integrated Security=True";
+        //const string connString =
+        //    "Data Source=DESKTOP-GPLJ87I;Initial Catalog=LibraryApp;Integrated Security=True";
 
         // Add the given book to the table
         public static int CreateBook(string title, string author)

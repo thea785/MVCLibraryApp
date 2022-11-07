@@ -44,7 +44,7 @@ namespace LibraryWebApplication.Controllers
                 return View();
 
             // Create user in the database
-            int userID = UsersBL.CreateUser(2, m.Email, m.FirstName, m.LastName, m.Password);
+            int userID = UsersBL.CreateUser(2, m.Email, m.FirstName, m.Author, m.Password);
 
             // Set session for new user
             HttpContext.Session.SetInt32("UserID", userID);
