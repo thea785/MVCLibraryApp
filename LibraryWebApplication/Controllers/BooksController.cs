@@ -34,15 +34,15 @@ namespace LibraryWebApplication.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult Checkout(int? id)
+        public IActionResult Checkout(int id)
         {
-            BooksBL.CheckoutBook((int)id, (int)HttpContext.Session.GetInt32("UserID"));
+            BooksBL.CheckoutBook(id, (int)HttpContext.Session.GetInt32("UserID"));
             return RedirectToAction("Index");
         }
 
-        public IActionResult Reserve(int? id)
+        public IActionResult Reserve(int id)
         {
-            BooksBL.HoldBook((int)id, (int)HttpContext.Session.GetInt32("UserID"));
+            BooksBL.HoldBook(id, (int)HttpContext.Session.GetInt32("UserID"));
             return RedirectToAction("Index");
         }
 
@@ -73,7 +73,6 @@ namespace LibraryWebApplication.Controllers
             {
                 bookModels.Add(Mapper.BookToBookModel(book));
             }
-
 
             return View("Index", bookModels);
         }
