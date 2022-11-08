@@ -12,39 +12,41 @@
 <body class="bg-dark">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark border-bottom border-secondary box-shadow mb-3">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LibraryWebApplication</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        @if (Context.Session.GetInt32("RoleID") > 1)
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
-                            </li>
-                        }
-                        else {
-                            <li class="nav-item">
-                                <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
-                            </li>
-                        }
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">LibraryWebApplication</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+                <ul class="navbar-nav flex-grow-1">
+                    @if (Context.Session.GetInt32("RoleID") > 1)
+                    {
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Register">Register</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Logout">Logout</a>
                         </li>
+                    }
+                    else {
                         <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Dashboard">Dashboard</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Login">Login</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Books</a>
-                        </li>
-                    </ul>
-                </div>
-                <form asp-controller="Books" asp-action="Search" class="form-inline my-2 my-lg-0">
-                    <input class="form-control text-light bg-secondary border-secondary mr-sm-2" type="text" id="expr" name="expr" aria-label="Search">
-                    <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
+                    }
+                    <li class="nav-item">
+                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Register">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" asp-area="" asp-controller="Dashboard" asp-action="Index">Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-light" asp-area="" asp-controller="Home" asp-action="Index">Books</a>
+                    </li>
+                    
+                </ul>
+                <ul class="nav navbar-nav navbar-right"><li class="nav-item text-light">@Context.Session.GetString("Email")</li></ul>
+            </div>
+            <form asp-controller="Books" asp-action="Search" class="form-inline my-2 my-lg-0">
+                <input class="form-control text-light bg-secondary border-secondary mr-sm-2" type="text" id="expr" name="expr" aria-label="Search">
+                <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
         </nav>
     </header>
 
@@ -53,6 +55,9 @@
             @RenderBody()
         </main>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
