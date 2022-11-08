@@ -18,6 +18,13 @@ namespace LibraryBusinessLogic
             return 0;
         }
 
+        public static void UpdateUserPassword(string email, string newPassword)
+        {
+            string newSalt, newHash;
+            Hashing.GenerateSaltedHash(newPassword, out newHash, out newSalt);
+            UsersData.UpdateUserPassword(email, newHash, newSalt);
+        }
+
         // Used by the register method to check for duplicate emails
         // Returns true if the email is valid
         public static bool VerifyEmail(string email)
