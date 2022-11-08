@@ -112,6 +112,18 @@ BEGIN
 END
 GO
 
+USE [LibraryApp]
+GO
+CREATE PROCEDURE DeleteUser
+	-- Add the parameters for the stored procedure here
+	@paramUserID int
+AS
+BEGIN
+	-- Insert statements for procedure here
+	DELETE FROM Users
+	WHERE UserID = @paramUserID;
+END
+GO
 
 USE [LibraryApp]
 GO

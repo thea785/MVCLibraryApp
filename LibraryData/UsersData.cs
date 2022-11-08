@@ -82,6 +82,35 @@ namespace LibraryData
             }
         }
 
+        public static void DeleteUser(int userID)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connString))
+                {
+                    using (SqlCommand _sqlCommand = new SqlCommand("DeleteUser", con))
+                    {
+                        _sqlCommand.CommandType = CommandType.StoredProcedure;
+                        _sqlCommand.CommandTimeout = 30;
+
+                        SqlParameter _paramUserID = _sqlCommand.CreateParameter();
+                        _paramUserID.DbType = DbType.Int32;
+                        _paramUserID.ParameterName = "@paramUserID";
+                        _paramUserID.Value = userID;
+                        _sqlCommand.Parameters.Add(_paramUserID);
+
+                        con.Open();
+                        _sqlCommand.ExecuteNonQuery(); // calls the sp
+                        con.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogData.CreateExceptionLog(ex);
+            }
+        }
+
         public static void UpdateUserPassword(string email, string newHashedPassword, string newSalt)
         {
             try
