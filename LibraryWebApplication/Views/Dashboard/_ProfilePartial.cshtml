@@ -20,7 +20,7 @@
     @foreach(var user in Model.users) 
     {
         // If the user is an admin or the element matches the user, then display the row
-        if (Context.Session.GetInt32("RoleID") > 2 || user.UserID == Context.Session.GetInt32("UserID"))
+        if (Context.Session.GetInt32("RoleID") > 3 || user.UserID == Context.Session.GetInt32("UserID"))
         {
             <tr>
                 <td>
