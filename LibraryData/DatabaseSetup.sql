@@ -216,7 +216,7 @@ CREATE PROCEDURE UpdateUserPassword
 	-- Add the parameters for the stored procedure here
 	@Email varchar(255)
 	,@NewHashedPassword varchar(MAX)
-	,@NewSalt varchar
+	,@NewSalt varchar(255)
 AS
 BEGIN
 	-- Insert statements for procedure here
