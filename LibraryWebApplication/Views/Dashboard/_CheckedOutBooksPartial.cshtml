@@ -1,6 +1,7 @@
 ﻿@model DashboardModel
 @using Microsoft.AspNetCore.Http
 
+<h3 class ="text-light text-center ml-2">My Books</h3>
 <table class="table table-bordered table-dark ml-4">
     <tr class="bg-secondary">
         <th>
@@ -36,18 +37,17 @@
                     }
                     else if (book.OnHoldBy == Context.Session.GetInt32("UserID")) // Book is on hold for current user
                     {
-                        <span>On Hold</span>
+                        <span class="text-light">On Hold</span>
                     }
-                    else{
-                        <pre>@book.CheckedOutBy @book.OnHoldBy</pre>
+                    else if (Model.users.FirstOrDefault(u => u.UserID == book.CheckedOutBy) != null)
+                    {
+                        <span class="text-light">@Model.users.FirstOrDefault(u => u.UserID == book.CheckedOutBy).Email</span>
+                    }
+                    else
+                    {
+                        <span class="text-light">Available</span>
                     }
                 </td>
-                @if (Context.Session.GetInt32("RoleID") > 2)
-                {
-                    <td style="border: none">
-                        <a asp-controller="Books" asp-action="Delete" asp-route-id="@book.BookID" method="post" class="text-danger">Delete</a>
-                    </td>
-                }
             </tr>
         }
     }
