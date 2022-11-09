@@ -6,7 +6,7 @@ namespace LibraryWebApplication.Controllers
     {
         public IActionResult Index()
         {
-            return View("/Views/Dashboard/Dashboard.cshtml");
+            return View("/Views/Dashboard/Dashboard.cshtml", Mapper.GetDashboardModel());
         }
     }
 }

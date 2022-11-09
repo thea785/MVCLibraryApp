@@ -1,4 +1,7 @@
-﻿<table class="table table-bordered table-dark ml-4">
+﻿@model DashboardModel
+@using Microsoft.AspNetCore.Http
+
+<table class="table table-bordered table-dark ml-4">
     <tr class="bg-secondary">
         <th>
             Book ID
@@ -10,7 +13,42 @@
             Author
         </th>
         <th>
-            Check Out
+            Status
         </th>
     </tr>
+    @foreach(var book in Model.books){
+        // If the user is librarian/admin OR the book is on hold by the user OR the book is checked out by the user, display the book
+        if (Context.Session.GetInt32("RoleID") > 2 || book.OnHoldBy == Context.Session.GetInt32("UserID") || book.CheckedOutBy == Context.Session.GetInt32("UserID")){
+            <tr>
+                <td>
+                    @book.BookID
+                </td>
+                <td>
+                    @book.Title
+                </td>
+                <td>
+                    @book.Author
+                </td>
+                <td>
+                    @if (book.CheckedOutBy == Context.Session.GetInt32("UserID")) // Book is checked out by current user
+                    {
+                        <button asp-controller="Dashboard" asp-action="Return" asp-route-id="@book.BookID" class="btn btn-success" style="width:150px">Return</button>
+                    }
+                    else if (book.OnHoldBy == Context.Session.GetInt32("UserID")) // Book is on hold for current user
+                    {
+                        <span>On Hold</span>
+                    }
+                    else{
+                        <pre>@book.CheckedOutBy @book.OnHoldBy</pre>
+                    }
+                </td>
+                @if (Context.Session.GetInt32("RoleID") > 2)
+                {
+                    <td style="border: none">
+                        <a asp-controller="Books" asp-action="Delete" asp-route-id="@book.BookID" method="post" class="text-danger">Delete</a>
+                    </td>
+                }
+            </tr>
+        }
+    }
 </table>

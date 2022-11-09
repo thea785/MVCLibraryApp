@@ -23,7 +23,7 @@ namespace LibraryWebApplication.Controllers
             // Set session for guest
             if (HttpContext.Session.GetInt32("UserID") == null)
             {
-                HttpContext.Session.SetInt32("UserID", 0);
+                HttpContext.Session.SetInt32("UserID", -1);
                 HttpContext.Session.SetInt32("RoleID", 1);
                 HttpContext.Session.SetString("Email", "");
             }
@@ -44,7 +44,7 @@ namespace LibraryWebApplication.Controllers
                 return View();
 
             // Create user in the database
-            int userID = UsersBL.CreateUser(2, m.Email, m.FirstName, m.Author, m.Password);
+            int userID = UsersBL.CreateUser(2, m.Email, m.FirstName, m.LastName, m.Password);
 
             // Set session for new user
             HttpContext.Session.SetInt32("UserID", userID);

@@ -49,5 +49,18 @@ namespace LibraryBusinessLogic
             }
             return searchResult;
         }
+
+        public static List<Book> GetBooksRelatedToUser(int userID)
+        {
+            List<Book> books = BooksData.GetBooks();
+            List<Book> result = new List<Book>();
+
+            foreach (Book b in books)
+            {
+                if (b.CheckedOutBy == userID || b.OnHoldBy == userID)
+                    result.Add(b);
+            }
+            return result;
+        }
     }
 }

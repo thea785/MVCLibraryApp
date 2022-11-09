@@ -1,6 +1,7 @@
 ﻿using LibraryData;
 using LibraryCommon;
 using System;
+using System.Collections.Generic;
 
 namespace LibraryBusinessLogic
 {
@@ -13,9 +14,9 @@ namespace LibraryBusinessLogic
             return UsersData.CreateUser(roleID, email, firstName, lastName, hashedPassword, salt);
         }
 
-        public static int GetUsers()
+        public static List<User> GetUsers()
         {
-            return 0;
+            return UsersData.GetAllUsers();
         }
 
         public static void UpdateUserPassword(string email, string newPassword)

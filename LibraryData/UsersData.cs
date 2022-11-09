@@ -3,15 +3,16 @@ using System.Data.SqlClient;
 using System.Data;
 using System;
 using LibraryCommon;
+using System.Collections.Generic;
 
 namespace LibraryData
 {
 	public static class UsersData
 	{
-        const string connString =
-            "Data Source=BIG-YELLOW;Initial Catalog=LibraryApp;Integrated Security=True";
         //const string connString =
-        //    "Data Source=DESKTOP-GPLJ87I;Initial Catalog=LibraryApp;Integrated Security=True";
+        //    "Data Source=BIG-YELLOW;Initial Catalog=LibraryApp;Integrated Security=True";
+        const string connString =
+            "Data Source=DESKTOP-GPLJ87I;Initial Catalog=LibraryApp;Integrated Security=True";
 
         public static int CreateUser(int roleID, string email, string firstName, string lastName, string hashedPassword, string salt)
         {
@@ -149,6 +150,50 @@ namespace LibraryData
             catch (Exception ex)
             {
                 ExceptionLogData.CreateExceptionLog(ex);
+            }
+        }
+
+        public static List<User> GetAllUsers()
+        {
+            try
+            {
+                List<User> users = new List<User>(); // Build a list of users to return
+
+                using (SqlConnection dbcon = new SqlConnection(connString))
+                {
+                    using (SqlCommand cmd = new SqlCommand("GetAllUsers", dbcon))
+                    {
+                        dbcon.Open(); // Open SqlConnection
+
+                        cmd.CommandType = System.Data.CommandType.StoredProcedure;
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            // Read in Customer records from SqlDataReader
+                            while (reader.Read())
+                            {
+                                User _user = new User()
+                                {
+                                    UserID = (int)reader["UserID"],
+                                    RoleID = (int)reader["RoleID"],
+                                    Email = (string)reader["Email"],
+                                    FirstName = reader["FirstName"] is DBNull ? "" : (string)reader["FirstName"],
+                                    LastName = reader["LastName"] is DBNull ? "" : (string)reader["LastName"],
+                                    HashedPassword = reader["HashedPassword"] is DBNull ? "" : (string)reader["HashedPassword"],
+                                    Salt = reader["Salt"] is DBNull ? "" : (string)reader["Salt"]
+                                };
+
+                                users.Add(_user);
+                            }
+                        }
+                    }
+                    dbcon.Close();
+                }
+                return users;
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogData.CreateExceptionLog(ex);
+                return null;
             }
         }
 
