@@ -14,6 +14,11 @@ namespace LibraryBusinessLogic
             return UsersData.CreateUser(roleID, email, firstName, lastName, hashedPassword, salt);
         }
 
+        public static void DeleteUser(int userID)
+        {
+            UsersData.DeleteUser(userID);
+        }
+
         public static List<User> GetUsers()
         {
             return UsersData.GetAllUsers();

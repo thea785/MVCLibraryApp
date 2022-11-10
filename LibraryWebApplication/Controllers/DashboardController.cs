@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using LibraryBusinessLogic;
+using Microsoft.AspNetCore.Mvc;
 
 namespace LibraryWebApplication.Controllers
 {
@@ -7,6 +8,13 @@ namespace LibraryWebApplication.Controllers
         public IActionResult Index()
         {
             return View("/Views/Dashboard/Dashboard.cshtml", Mapper.GetDashboardModel());
+        }
+
+        public IActionResult DeleteUser(int id)
+        {
+            UsersBL.DeleteUser(id);
+
+            return RedirectToAction("Index");
         }
     }
 }

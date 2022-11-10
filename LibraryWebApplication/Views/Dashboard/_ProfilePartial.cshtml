@@ -36,8 +36,14 @@
                     @user.LastName
                 </td>
                 <td style="border: none">
-                    <button asp-controller="Dashboard" asp-action="EditUser" asp-route-id="@user.UserID" class="btn btn-primary" style="width:150px">Edit</button>
+                    <button asp-controller="Dashboard" asp-action="EditUser" asp-route-id="@user.UserID" class="btn btn-primary" style="width:100px">Edit</button>
                 </td>
+                @if (Context.Session.GetInt32("RoleID") > 3 && user.UserID != Context.Session.GetInt32("UserID")) // User is admin and element does NOT match user
+                {
+                    <td style="border: none">
+                        <a asp-controller="Dashboard" asp-action="DeleteUser" asp-route-id="@user.UserID" method="post" class="btn btn-danger" style="width:100px">Delete</a>
+                    </td>
+                }
             </tr>
         }
     }
