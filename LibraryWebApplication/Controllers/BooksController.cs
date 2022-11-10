@@ -61,8 +61,6 @@ namespace LibraryWebApplication.Controllers
 
         public IActionResult Search(IFormCollection form)
         {
-            Console.WriteLine(form["expr"]);
-
             // Get books and convert them to BookModel objects
             List<Book> books = BooksBL.SearchBooks(form["expr"]);
             List<BookModel> bookModels = new List<BookModel>();
