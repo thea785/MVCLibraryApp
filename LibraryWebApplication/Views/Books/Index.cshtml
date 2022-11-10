@@ -9,9 +9,12 @@
     <div class="col-6">
         <h2 class="text-light">Book List</h2>
     </div>
-    <div class="col">
-        <a asp-controller="Books" asp-action="Create" class="btn btn-success" style="width:150px">New Book</a>
-    </div>
+    @if (Context.Session.GetInt32("RoleID") > 2) 
+    {
+        <div class="col">
+            <a asp-controller="Books" asp-action="Create" class="btn btn-success" style="width:150px">New Book</a>
+        </div>
+    }
 </div>
     <br /><br />
 
