@@ -35,8 +35,8 @@
                 <td>
                     @user.LastName
                 </td>
-                <td>
-                    <button asp-controller="Dashboard" asp-action="EditUser" asp-route-id="@user.UserID" class="btn" style="width:150px" disabled>Edit</button>
+                <td style="border: none">
+                    <button asp-controller="Dashboard" asp-action="EditUser" asp-route-id="@user.UserID" class="btn btn-primary" style="width:150px">Edit</button>
                 </td>
             </tr>
         }
