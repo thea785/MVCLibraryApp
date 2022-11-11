@@ -1,4 +1,5 @@
 ﻿@model EditUserModel
+@using Microsoft.AspNetCore.Http
 @{
     ViewData["Title"] = "Edit User";
 }
@@ -21,6 +22,17 @@
             <input asp-for="Email" class="form-control text-light bg-secondary border-secondary" />
             <span asp-validation-for="Email" class="text-danger"></span>
         </div>
+        @if (Context.Session.GetInt32("RoleID") > 3) 
+        {
+            <div class="mb-3">
+                <label asp-for="RoleID"></label><br />
+                <select asp-for="RoleID">
+                    <option value=2>Patron</option>
+                    <option value=3>Librarian</option>
+                    <option value=4>Admin</option>
+                </select>
+            </div>
+        }
         <div class="mb-3">
             <label asp-for="Password"></label>
             <input asp-for="Password" class="form-control text-light bg-secondary border-secondary" />
