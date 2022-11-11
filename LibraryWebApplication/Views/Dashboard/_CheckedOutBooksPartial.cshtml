@@ -33,7 +33,7 @@
                 <td>
                     @if (book.CheckedOutBy == Context.Session.GetInt32("UserID")) // Book is checked out by current user
                     {
-                        <button asp-controller="Dashboard" asp-action="Return" asp-route-id="@book.BookID" class="btn btn-success" style="width:150px">Return</button>
+                        <a asp-controller="Dashboard" asp-action="Return" asp-route-id="@book.BookID" class="btn btn-success" style="width:150px">Return</a>
                     }
                     else if (book.OnHoldBy == Context.Session.GetInt32("UserID")) // Book is on hold for current user
                     {

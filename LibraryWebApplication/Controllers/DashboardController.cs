@@ -16,5 +16,12 @@ namespace LibraryWebApplication.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public IActionResult Return(int id)
+        {
+            BooksBL.ReturnBook(id);
+
+            return RedirectToAction("Index");
+        }
     }
 }
