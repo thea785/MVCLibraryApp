@@ -1,4 +1,5 @@
 ﻿using LibraryBusinessLogic;
+using LibraryWebApplication.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibraryWebApplication.Controllers
@@ -22,6 +23,14 @@ namespace LibraryWebApplication.Controllers
             BooksBL.ReturnBook(id);
 
             return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public IActionResult EditUser(string email)
+        {
+            EditUserModel um = Mapper.UserToUserModel(UsersBL.GetUserByEmail(email));
+
+            return View(um);
         }
     }
 }

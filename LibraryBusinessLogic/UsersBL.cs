@@ -24,6 +24,11 @@ namespace LibraryBusinessLogic
             return UsersData.GetAllUsers();
         }
 
+        public static User GetUserByEmail(string email)
+        {
+            return UsersData.GetUserByEmail(email);
+        }
+
         public static void UpdateUserPassword(string email, string newPassword)
         {
             string newSalt, newHash;

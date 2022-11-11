@@ -5,7 +5,7 @@ namespace LibraryWebApplication.Models
 {
     public class EditUserModel
     {
-        [Required]
+        public int UserID { get; set; }
         [Range(2, 4)]
         public int RoleID { get; set; }
         [Required]
