@@ -8,6 +8,18 @@ namespace LibraryWebApplication
 {
     public static class Mapper
     {
+        public static EditUserModel UserToUserModel(User u)
+        {
+            return new EditUserModel()
+            {
+                UserID = u.UserID,
+                RoleID = u.RoleID,
+                Email = u.Email,
+                FirstName = u.FirstName,
+                LastName = u.LastName
+            };
+        }
+
         public static BookModel BookToBookModel(Book b)
         {
             return new BookModel()
