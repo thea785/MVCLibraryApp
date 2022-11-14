@@ -32,5 +32,17 @@ namespace LibraryWebApplication.Controllers
 
             return View(um);
         }
+
+        [HttpPost]
+        public IActionResult EditUser(EditUserModel m)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            UsersBL.EditUser(m.UserID, m.RoleID, m.Email, m.FirstName, m.LastName);
+            return RedirectToAction("Index");
+        }
     }
 }

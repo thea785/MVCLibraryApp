@@ -261,7 +261,7 @@ namespace LibraryData
             {
                 using (SqlConnection con = new SqlConnection(connString))
                 {
-                    using (SqlCommand _sqlCommand = new SqlCommand("UpdateUserPassword", con))
+                    using (SqlCommand _sqlCommand = new SqlCommand("EditUser", con))
                     {
                         _sqlCommand.CommandType = CommandType.StoredProcedure;
                         _sqlCommand.CommandTimeout = 30;
@@ -271,6 +271,12 @@ namespace LibraryData
                         _userID.ParameterName = "@UserID";
                         _userID.Value = userID;
                         _sqlCommand.Parameters.Add(_userID);
+
+                        SqlParameter _roleID = _sqlCommand.CreateParameter();
+                        _roleID.DbType = DbType.Int32;
+                        _roleID.ParameterName = "@RoleID";
+                        _roleID.Value = userID;
+                        _sqlCommand.Parameters.Add(_roleID);
 
                         SqlParameter _Email = _sqlCommand.CreateParameter();
                         _Email.DbType = DbType.String;

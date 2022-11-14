@@ -8,8 +8,10 @@ namespace LibraryData
 {
     public static class ExceptionLogData
     {
+        //const string connString =
+        //    "Data Source=BIG-YELLOW;Initial Catalog=LibraryApp;Integrated Security=True";
         const string connString =
-            "Data Source=BIG-YELLOW;Initial Catalog=LibraryApp;Integrated Security=True";
+            "Data Source=DESKTOP-GPLJ87I;Initial Catalog=LibraryApp;Integrated Security=True";
         public static int CreateExceptionLog(Exception inException)
         {
             int _pk = 0;

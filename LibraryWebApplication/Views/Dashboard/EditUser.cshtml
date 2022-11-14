@@ -5,7 +5,7 @@
 }
 <h1 class="text-light">@ViewData["Title"] @Model.Email</h1>
 
-<form asp-controller="Dashboard" class="" method="post">
+<form asp-controller="Dashboard" asp-action="EditUser" method="post">
     <div class="border border-secondary text-light p-3 mt-4">
         <div class="mb-3">
             <label asp-for="FirstName"></label>

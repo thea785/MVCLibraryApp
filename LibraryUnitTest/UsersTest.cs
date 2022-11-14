@@ -57,5 +57,23 @@ namespace LibraryUnitTest
             // Delete the user
             UsersData.DeleteUser(_userID);
         }
+
+        [TestMethod]
+        public void EditUserTest()
+        {
+            // Create a user in the database
+            int _userID = UsersData.CreateUser(2, "test5@gmail.com", "5Fname", "5Lname", hash, salt);
+
+            // Edit the user
+            UsersBL.EditUser(_userID, 3, "test5_2@gmail.com", "5Fname", "5_2Lname");
+
+            // Check if the user was edited
+            Assert.AreEqual(UsersBL.GetUserByEmail("test5_2@gmail.com").RoleID, 3);
+            Assert.AreEqual(UsersBL.GetUserByEmail("test5_2@gmail.com").FirstName, "5Fname");
+            Assert.AreEqual(UsersBL.GetUserByEmail("test5_2@gmail.com").LastName, "5_2Lname");
+
+            // Delete the user
+            UsersData.DeleteUser(_userID);
+        }
     }
 }
