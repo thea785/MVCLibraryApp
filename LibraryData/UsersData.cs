@@ -254,5 +254,52 @@ namespace LibraryData
                 return null;
             }
         }
+
+        public static void EditUser(int userID, string email, string firstName, string lastName)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connString))
+                {
+                    using (SqlCommand _sqlCommand = new SqlCommand("UpdateUserPassword", con))
+                    {
+                        _sqlCommand.CommandType = CommandType.StoredProcedure;
+                        _sqlCommand.CommandTimeout = 30;
+
+                        SqlParameter _userID = _sqlCommand.CreateParameter();
+                        _userID.DbType = DbType.Int32;
+                        _userID.ParameterName = "@UserID";
+                        _userID.Value = userID;
+                        _sqlCommand.Parameters.Add(_userID);
+
+                        SqlParameter _Email = _sqlCommand.CreateParameter();
+                        _Email.DbType = DbType.String;
+                        _Email.ParameterName = "@Email";
+                        _Email.Value = email;
+                        _sqlCommand.Parameters.Add(_Email);
+
+                        SqlParameter _firstName = _sqlCommand.CreateParameter();
+                        _firstName.DbType = DbType.String;
+                        _firstName.ParameterName = "@FirstName";
+                        _firstName.Value = firstName;
+                        _sqlCommand.Parameters.Add(_firstName);
+
+                        SqlParameter _lastName = _sqlCommand.CreateParameter();
+                        _lastName.DbType = DbType.String;
+                        _lastName.ParameterName = "@LastName";
+                        _lastName.Value = lastName;
+                        _sqlCommand.Parameters.Add(_lastName);
+
+                        con.Open();
+                        _sqlCommand.ExecuteNonQuery(); // calls the sp
+                        con.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogData.CreateExceptionLog(ex);
+            }
+        }
     }
 }

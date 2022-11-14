@@ -228,6 +228,24 @@ GO
 
 USE [LibraryApp]
 GO
+CREATE PROCEDURE EditUser
+	-- Add the parameters for the stored procedure here
+	@UserID int,
+	@RoleID int,
+	@Email varchar(20),
+	@FirstName varchar(20),
+	@LastName varchar(20)
+AS
+BEGIN
+	-- Insert statements for procedure here
+	UPDATE Users
+	SET Users.RoleID=@RoleID, Users.Email=@Email, Users.FirstName=@FirstName, Users.LastName=LastName
+	WHERE Users.UserID = @UserID;
+END
+GO
+
+USE [LibraryApp]
+GO
 CREATE PROCEDURE SearchBooks
 	-- Add the parameters for the stored procedure here
 	@SearchExpression varchar(30)
