@@ -10,7 +10,6 @@ namespace LibraryWebApplication.Models
         public int RoleID { get; set; }
         [Required]
         [EmailAddress]
-        [Remote(action: "VerifyEmail", controller: "Dashboard")]
         public string Email { get; set; } = null!;
         [Required]
         public string FirstName { get; set; }
