@@ -51,8 +51,8 @@ namespace LibraryWebApplication.Controllers
             HttpContext.Session.SetString("Email", m.Email);
             HttpContext.Session.SetInt32("RoleID", 2);
 
-            // Go to index
-            return RedirectToAction("Index");
+            // Go to dashboard
+            return RedirectToAction("Index", "Dashboard");
         }
 
         [AcceptVerbs("Get", "Post")]
@@ -88,8 +88,8 @@ namespace LibraryWebApplication.Controllers
             HttpContext.Session.SetString("Email", m.Email);
             HttpContext.Session.SetInt32("RoleID", roleID);
 
-            // Go to index
-            return RedirectToAction("Index");
+            // Go to dashboard
+            return RedirectToAction("Index", "Dashboard");
         }
 
         public IActionResult Logout()
