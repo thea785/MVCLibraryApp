@@ -84,7 +84,7 @@ namespace LibraryBusinessLogic
 
         public static void EditUser(int userID, int roleID, string email, string firstName, string lastName)
         {
-            UsersData.EditUser(userID, email, firstName, lastName);
+            UsersData.EditUser(userID, roleID, email, firstName, lastName);
         }
     }
 }

@@ -255,7 +255,7 @@ namespace LibraryData
             }
         }
 
-        public static void EditUser(int userID, string email, string firstName, string lastName)
+        public static void EditUser(int userID, int roleID, string email, string firstName, string lastName)
         {
             try
             {
@@ -275,7 +275,7 @@ namespace LibraryData
                         SqlParameter _roleID = _sqlCommand.CreateParameter();
                         _roleID.DbType = DbType.Int32;
                         _roleID.ParameterName = "@RoleID";
-                        _roleID.Value = userID;
+                        _roleID.Value = roleID;
                         _sqlCommand.Parameters.Add(_roleID);
 
                         SqlParameter _Email = _sqlCommand.CreateParameter();
