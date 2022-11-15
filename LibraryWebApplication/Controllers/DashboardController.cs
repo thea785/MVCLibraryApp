@@ -1,5 +1,6 @@
 ﻿using LibraryBusinessLogic;
 using LibraryWebApplication.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace LibraryWebApplication.Controllers
@@ -41,7 +42,8 @@ namespace LibraryWebApplication.Controllers
                 return View();
             }
 
-            UsersBL.EditUser(m.UserID, m.RoleID, m.Email, m.FirstName, m.LastName);
+            //UsersBL.EditUser((int)HttpContext.Session.GetInt32("UserID"), (int)HttpContext.Session.GetInt32("RoleID"), m.Email, m.FirstName, m.LastName);
+            UsersBL.UpdateUserPassword(m.Email, m.Password);
             return RedirectToAction("Index");
         }
     }
