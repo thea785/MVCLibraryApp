@@ -80,5 +80,22 @@ namespace LibraryUnitTest
             BooksData.DeleteBook(_bookID);
             UsersData.DeleteUser(_userID);
         }
+
+        [TestMethod]
+        public void EditBookTest()
+        {
+            // Create a book
+            int _bookID = BooksData.CreateBook("7TestTitle", "7TestAuthor");
+
+            // Edit the book title and author
+            BooksBL.EditBook(_bookID, "8TestTitle", "8TestAuthor");
+
+            // Check if the book was edited
+            Assert.AreEqual(BooksBL.GetBookByID(_bookID).Title, "8TestTitle");
+            Assert.AreEqual(BooksBL.GetBookByID(_bookID).Author, "8TestAuthor");
+
+            // Delete the book
+            BooksData.DeleteBook(_bookID);
+        }
     }
 }
