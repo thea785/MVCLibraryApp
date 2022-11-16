@@ -93,6 +93,48 @@ namespace LibraryData
             }
         }
 
+        // Edit the author and title of the given book
+        public static void EditBook(int bookID, string title, string author)
+        {
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connString))
+                {
+                    using (SqlCommand _sqlCommand = new SqlCommand("EditBook", con))
+                    {
+                        _sqlCommand.CommandType = CommandType.StoredProcedure;
+                        _sqlCommand.CommandTimeout = 30;
+
+                        SqlParameter _paramBookID = _sqlCommand.CreateParameter();
+                        _paramBookID.DbType = DbType.Int32;
+                        _paramBookID.ParameterName = "@BookID";
+                        _paramBookID.Value = bookID;
+                        _sqlCommand.Parameters.Add(_paramBookID);
+
+                        SqlParameter _title = _sqlCommand.CreateParameter();
+                        _title.DbType = DbType.String;
+                        _title.ParameterName = "@Title";
+                        _title.Value = title;
+                        _sqlCommand.Parameters.Add(_title);
+
+                        SqlParameter _author = _sqlCommand.CreateParameter();
+                        _author.DbType = DbType.String;
+                        _author.ParameterName = "@Author";
+                        _author.Value = author;
+                        _sqlCommand.Parameters.Add(_author);
+
+                        con.Open();
+                        _sqlCommand.ExecuteNonQuery(); // calls the sp
+                        con.Close();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionLogData.CreateExceptionLog(ex);
+            }
+        }
+
         // Returns the Books table as a List of Book objects
         public static List<Book> GetBooks()
         {

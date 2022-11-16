@@ -74,5 +74,21 @@ namespace LibraryWebApplication.Controllers
 
             return View("Index", bookModels);
         }
+
+        [HttpGet]
+        public IActionResult EditBook(int id)
+        {
+            EditBookModel bm = Mapper.BookToEditBookModel(BooksBL.GetBookByID(id));
+
+            return View(bm);
+        }
+
+        [HttpPost]
+        public IActionResult EditBook(EditBookModel bm)
+        {
+            BooksBL.EditBook(bm.BookID, bm.Title, bm.Author);
+
+            return RedirectToAction("Index");
+        }
     }   
 }

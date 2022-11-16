@@ -65,5 +65,15 @@ namespace LibraryWebApplication
 
             return dm;
         }
+
+        public static EditBookModel BookToEditBookModel(Book b)
+        {
+            return new EditBookModel()
+            {
+                BookID = b.BookID,
+                Title = b.Title,
+                Author = b.Author
+            };
+        }
     }
 }

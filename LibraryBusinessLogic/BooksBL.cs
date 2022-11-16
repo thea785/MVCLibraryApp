@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using LibraryCommon;
 using LibraryData;
@@ -11,6 +12,11 @@ namespace LibraryBusinessLogic
         public static List<Book> GetBooks()
         {
             return BooksData.GetBooks();
+        }
+
+        public static Book GetBookByID(int bookID)
+        {
+            return BooksData.GetBooks().FirstOrDefault(b => b.BookID == bookID);
         }
 
         public static void CheckoutBook(int bookID, int userID)
@@ -61,6 +67,11 @@ namespace LibraryBusinessLogic
                     result.Add(b);
             }
             return result;
+        }
+
+        public static void EditBook(int bookID, string title, string author)
+        {
+            BooksData.EditBook(bookID, title, author);
         }
     }
 }

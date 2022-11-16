@@ -212,6 +212,22 @@ GO
 
 USE [LibraryApp]
 GO
+CREATE PROCEDURE EditBook
+	-- Add the parameters for the stored procedure here
+	@BookID int
+	,@Title varchar(30)
+	,@Author varchar(30)
+AS
+BEGIN
+	-- Insert statements for procedure here
+	UPDATE Books
+	SET Books.Title=@Title, Books.Author=@Author
+	WHERE Books.BookID=@BookID;
+END
+GO
+
+USE [LibraryApp]
+GO
 CREATE PROCEDURE UpdateUserPassword
 	-- Add the parameters for the stored procedure here
 	@Email varchar(255)

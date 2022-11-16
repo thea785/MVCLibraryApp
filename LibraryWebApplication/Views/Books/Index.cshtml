@@ -75,6 +75,9 @@
                 <td style="border: none">
                     <a asp-controller="Books" asp-action="Delete" asp-route-id="@book.BookID" method="post" class="text-danger">Delete</a>
                 </td>
+                <td style="border: none">
+                    <a asp-controller="Books" asp-action="EditBook" asp-route-id="@book.BookID" method="post" class="text-primary">Edit</a>
+                </td>
             }
         </tr>
     }
