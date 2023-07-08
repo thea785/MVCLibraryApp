@@ -1,6 +1,6 @@
 ## Library Web Application
 
-This repo was created for a coding bootcamp in 2022. It is a ASP.NET Core MVC web application that allows users to view an index of cooking recipes and leave text reviews. The application follows the Model-View-Controller (MVC) architectural pattern and has a data layer, a business logic layer, and a presentation layer.
+This repo was created for a coding bootcamp in 2022. It is a ASP.NET Core MVC web application that allows users to view, checkout, and reserve books. The application follows the Model-View-Controller (MVC) architectural pattern and has a data layer, a business logic layer, and a presentation layer.
 
 ### Features
 
